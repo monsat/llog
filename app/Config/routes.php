@@ -29,7 +29,7 @@
  */
 	Router::connect('/', array('controller' => 'events', 'action' => 'index'));
 	Router::connect('/index', array('controller' => 'events', 'action' => 'index'));
-	Router::connect('/e/:action/*', array('controller' => 'events'));
+	Router::connect('/view/*', array('controller' => 'events', 'action' => 'view'));
 	Router::connect('/c/:action/*', array('controller' => 'contents'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.

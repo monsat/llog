@@ -1,87 +1,48 @@
-<div class="events view">
-<h2><?php  echo __('Event'); ?></h2>
-	<dl>
-		<dt><?php echo __('Id'); ?></dt>
-		<dd>
-			<?php echo h($event['Event']['id']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Url'); ?></dt>
-		<dd>
-			<?php echo h($event['Event']['url']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Title'); ?></dt>
-		<dd>
-			<?php echo h($event['Event']['title']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Body'); ?></dt>
-		<dd>
-			<?php echo h($event['Event']['body']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Created'); ?></dt>
-		<dd>
-			<?php echo h($event['Event']['created']); ?>
-			&nbsp;
-		</dd>
-		<dt><?php echo __('Updated'); ?></dt>
-		<dd>
-			<?php echo h($event['Event']['updated']); ?>
-			&nbsp;
-		</dd>
-	</dl>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('Edit Event'), array('action' => 'edit', $event['Event']['id'])); ?> </li>
-		<li><?php echo $this->Form->postLink(__('Delete Event'), array('action' => 'delete', $event['Event']['id']), null, __('Are you sure you want to delete # %s?', $event['Event']['id'])); ?> </li>
-		<li><?php echo $this->Html->link(__('List Events'), array('action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Event'), array('action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Contents'), array('controller' => 'contents', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Content'), array('controller' => 'contents', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
-<div class="related">
-	<h3><?php echo __('Related Contents'); ?></h3>
-	<?php if (!empty($event['Content'])): ?>
-	<table cellpadding = "0" cellspacing = "0">
-	<tr>
-		<th><?php echo __('Id'); ?></th>
-		<th><?php echo __('Event Id'); ?></th>
-		<th><?php echo __('Url'); ?></th>
-		<th><?php echo __('Title'); ?></th>
-		<th><?php echo __('Body'); ?></th>
-		<th><?php echo __('Created'); ?></th>
-		<th><?php echo __('Updated'); ?></th>
-		<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php
-		$i = 0;
-		foreach ($event['Content'] as $content): ?>
-		<tr>
-			<td><?php echo $content['id']; ?></td>
-			<td><?php echo $content['event_id']; ?></td>
-			<td><?php echo $content['url']; ?></td>
-			<td><?php echo $content['title']; ?></td>
-			<td><?php echo $content['body']; ?></td>
-			<td><?php echo $content['created']; ?></td>
-			<td><?php echo $content['updated']; ?></td>
-			<td class="actions">
-				<?php echo $this->Html->link(__('View'), array('controller' => 'contents', 'action' => 'view', $content['id'])); ?>
-				<?php echo $this->Html->link(__('Edit'), array('controller' => 'contents', 'action' => 'edit', $content['id'])); ?>
-				<?php echo $this->Form->postLink(__('Delete'), array('controller' => 'contents', 'action' => 'delete', $content['id']), null, __('Are you sure you want to delete # %s?', $content['id'])); ?>
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-<?php endif; ?>
+<?php
+	$this->assign('event-title', $this->Html->link($event['Event']['title'], array($event['Event']['id'])));
+?>
 
-	<div class="actions">
-		<ul>
-			<li><?php echo $this->Html->link(__('New Content'), array('controller' => 'contents', 'action' => 'add')); ?> </li>
-		</ul>
+<!-- Static navbar -->
+<div class="navbar">
+	<div class="container">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">Logs</a>
+		<div class="nav-collapse collapse" id="log-tab-wrapper">
+			<ul class="nav navbar-nav" id="log-tab-options">
+				<li class="active"><a href="#all">All</a></li>
+				<li><a href="#favorites">Favorites</a></li>
+				<li><a href="#archives">Archives</a></li>
+			</ul>
+			<ul class="nav navbar-nav pull-right" id="log-tab-sortby">
+				<li><a href="javascript:void(0)">Sort by</a></li>
+				<li class="active"><a href="#">Default</a></li>
+				<li><a href="#">Score</a></li>
+				<li><a href="#">Posted time</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+	</div>
+</div>
+<div class="log-post">
+	<form id="form-log-post">
+		<button type="submit" class="btn btn-default pull-right" style="width: 18%;">Add Content Url</button>
+		<input type="text" placeholder="Enter a content url" style="width: 80%;">
+	</form>
+</div>
+<div class="log-box">
+	<div class="log-child">
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		<a href="http://www.youtube.com/embed/aKGf31dAd0s" class="embed">http://www.youtube.com/embed/aKGf31dAd0s</a>
+	</div>
+	<div class="log-child log-archives">
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		<a href="http://blog.coworking.tokyo.jp/" class="embed">http://blog.coworking.tokyo.jp/</a>
+	</div>
+	<div class="log-child hidden template">
+		<a class="close" data-dismiss="alert" href="#">&times;</a>
+		<a href="#" class="embed">.</a>
 	</div>
 </div>
