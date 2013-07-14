@@ -93,4 +93,6 @@ Environment::initialize(array(
 	'Production' => array('l-log.com', 'www.l-log.com'),
 	'Develop' => array('dev.www.l-log.com'),
 ));
-debug(Environment::is('Production'));
+if (!Environment::is('Production')) {
+	Configure::write('debug', 2);
+}
