@@ -93,4 +93,4 @@ Environment::initialize(array(
 	'Production' => array('l-log.com', 'www.l-log.com'),
 	'Develop' => array('dev.www.l-log.com'),
 ));
-debug(Environment::is('Develop'));
+debug(Environment::is('Production'));
