@@ -3,10 +3,10 @@
 	<h1>Follow up &quot;Benkyokai&quot; !</h1>
 	<p>Contents will be embedded automatically.</p>
 
-	<form class="form-post-event">
+	<?php echo $this->Form->create('Event', array('url' => array('action' => 'add'), 'class' => 'form-post-event')); ?>
 		<button type="submit" class="btn btn-default pull-right" style="width: 28%;">Create a new follow up</button>
-		<input type="text" placeholder="http://phpmatsuri-2013.peatix.com/" style="width: 70%;">
-	</form>
+		<?php echo $this->Form->input('url', array('label' => false, 'placeholder' => 'http://phpmatsuri-2013.peatix.com/', 'style' => 'width: 70%;')); ?>
+	<?php echo $this->Form->end(); ?>
 	<p>
 		You can post urls of event websites.
 	</p>

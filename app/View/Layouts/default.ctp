@@ -184,6 +184,7 @@
 			var content = '<p>' + data.title + '</p>' + '<p>' + data.description + '</p>'
 			$(this).after(content).removeClass('embed').addClass('embeded');
 		});
+<?php if (!empty($event['Event']['id'])): ?>
 		// embed after posting
 		$('#form-log-post').submit(function(){
 			var $input = $('input[type=text]', this);
@@ -191,8 +192,17 @@
 			var $child = $lastChild.clone().removeClass('template').removeClass('hidden').prependTo('div.log-box');
 			$('a.embed', $child).text(url).attr('href', url).embedly();
 			$input.val('');
+			// post
+			$.post(
+				'/c/add/<?php echo $event['Event']['id']; ?>.json',
+				{url: url},
+				function (data, dataType) {
+					console.log(data);
+				}
+			);
 			return false;
 		});
+<?php endif; ?>
 		// close log-child
 		$children.alert().bind('close.bs.alert', function (e) {
 			var _data = $(this).find(target).data('embedly');
